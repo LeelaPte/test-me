@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
-  #binding.pry
   # initialize test data
   let!(:todos) { create_list(:todo, 10) }
   let(:todo_id) { todos.first.id }
@@ -55,6 +54,15 @@ RSpec.describe 'Todos API', type: :request do
   describe 'POST /todos' do
     # valid payload
     let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
+
+    context 'when we uses a old school' do
+      let(:new_todo) { build(:todo) }
+      before { post '/todos', params: new_todo.attributes }
+
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
 
     context 'when the request is valid' do
       before { post '/todos', params: valid_attributes }

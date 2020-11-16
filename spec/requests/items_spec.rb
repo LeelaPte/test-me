@@ -62,7 +62,7 @@ RSpec.describe 'Items API' do
     end
   end
 
-  # Test suite for PUT /todos/:todo_id/items
+  # Test suite for POST /todos/:todo_id/items
   describe 'POST /todos/:todo_id/items' do
     let(:valid_attributes) { { name: 'Visit Narnia', done: false } }
 
